@@ -1,35 +1,17 @@
 {
-  "version": 2,
-  "name": "wasat-group-website",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
+  "rewrites": [
+    { "source": "/old-path", "destination": "/new-path" }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
+  "redirects": [
+    { "source": "/blog", "destination": "https://blog.example.com", "permanent": true }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
       ]
     }
-  ]
+  ],
+  "trailingSlash": false
 }
